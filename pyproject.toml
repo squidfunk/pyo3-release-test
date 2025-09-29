@@ -1,0 +1,26 @@
+[project]
+name = "guessing-game"
+version = "0.0.1"
+description = "Release test"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Martin Donath", email = "martin.donath@squidfunk.com" }
+]
+maintainers = [
+    { name = "Martin Donath", email = "martin.donath@squidfunk.com" }
+]
+
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "python"
+
+[dependency-groups]
+dev = [
+    "maturin>=1.9.4",
+]
+
