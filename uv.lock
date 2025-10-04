@@ -3,6 +3,21 @@ revision = 3
 requires-python = ">=3.10"
 
 [[package]]
+name = "guessing-game"
+version = "0.0.1"
+source = { editable = "." }
+
+[package.dev-dependencies]
+dev = [
+    { name = "maturin" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [{ name = "maturin", specifier = ">=1.9.4" }]
+
+[[package]]
 name = "maturin"
 version = "1.9.4"
 source = { registry = "https://pypi.org/simple" }
@@ -25,21 +40,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/14/14/f86d0124bf1816b99005c058a1dbdca7cb5850d9cf4b09dcae07a1bc6201/maturin-1.9.4-py3-none-win_amd64.whl", hash = "sha256:8e450bb2c9afdf38a0059ee2e1ec2b17323f152b59c16f33eb9c74edaf1f9f79", size = 8237391, upload-time = "2025-08-27T11:37:53.23Z" },
     { url = "https://files.pythonhosted.org/packages/3f/25/8320fc2591e45b750c3ae71fa596b47aefa802d07d6abaaa719034a85160/maturin-1.9.4-py3-none-win_arm64.whl", hash = "sha256:7a6f980a9b67a5c13c844c268eabd855b54a6a765df4b4bb07d15a990572a4c9", size = 6988277, upload-time = "2025-08-27T11:37:55.429Z" },
 ]
-
-[[package]]
-name = "pyo3-release-test"
-version = "0.0.1"
-source = { editable = "." }
-
-[package.dev-dependencies]
-dev = [
-    { name = "maturin" },
-]
-
-[package.metadata]
-
-[package.metadata.requires-dev]
-dev = [{ name = "maturin", specifier = ">=1.9.4" }]
 
 [[package]]
 name = "tomli"
