@@ -3,8 +3,23 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
+/// Adds two numbers.
+/// 
+/// # Examples
+/// 
+/// ```
+/// use guessing_game::add;
+/// 
+/// let sum = add(2, 3);
+/// assert_eq!(sum, 5);
+/// ```
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+/// A simple "Guess the Number" game implemented in Rust and exposed to Python.
 #[pyfunction]
-fn guess_the_number() {
+pub fn guess_the_number() {
     println!("Guess the number!");
 
     let secret_number = rand::rng().random_range(1..101);
@@ -45,3 +60,13 @@ fn guessing_game(m: &Bound<'_, PyModule>) -> PyResult<()> {
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_add() {
+        assert_eq!(add(2, 3), 5);
+    }
+}
+    
