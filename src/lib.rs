@@ -4,12 +4,12 @@ use std::cmp::Ordering;
 use std::io;
 
 /// Adds two numbers.
-/// 
+///
 /// # Examples
-/// 
+///
 /// ```
 /// use guessing_game::add;
-/// 
+///
 /// let sum = add(2, 3);
 /// assert_eq!(sum, 5);
 /// ```
@@ -69,4 +69,3 @@ mod tests {
         assert_eq!(add(2, 3), 5);
     }
 }
-    
