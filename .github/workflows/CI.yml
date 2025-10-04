@@ -20,21 +20,22 @@ permissions:
 
 jobs:
   linux:
+    name: Linux
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
         platform:
-          - runner: ubuntu-22.04
+          - #runner: ubuntu-22.04
             target: x86_64
-          - runner: ubuntu-22.04
+          - #runner: ubuntu-22.04
             target: x86
-          - runner: ubuntu-22.04
+          - #runner: ubuntu-22.04
             target: aarch64
-          - runner: ubuntu-22.04
+          - #runner: ubuntu-22.04
             target: armv7
-          - runner: ubuntu-22.04
+          - #runner: ubuntu-22.04
             target: s390x
-          - runner: ubuntu-22.04
+          - #runner: ubuntu-22.04
             target: ppc64le
     steps:
       - uses: actions/checkout@v4
@@ -62,6 +63,7 @@ jobs:
           path: dist
 
   musllinux:
+    name: Linux/musl
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -100,13 +102,14 @@ jobs:
           path: dist
 
   windows:
+    name: Windows
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
         platform:
-          - runner: windows-latest
+          - #runner: windows-latest
             target: x64
-          - runner: windows-latest
+          - #runner: windows-latest
             target: x86
     steps:
       - uses: actions/checkout@v4
@@ -137,6 +140,7 @@ jobs:
           path: dist
 
   macos:
+    name: macOS
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -169,6 +173,7 @@ jobs:
           path: dist
 
   sdist:
+    name: Source distribution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
