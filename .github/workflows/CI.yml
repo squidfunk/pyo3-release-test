@@ -21,7 +21,7 @@ permissions:
 jobs:
   linux:
     name: Linux
-    runs-on: ${{ matrix.platform.runner }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         platform:
@@ -103,7 +103,7 @@ jobs:
 
   windows:
     name: Windows
-    runs-on: ${{ matrix.platform.runner }}
+    runs-on: windows-latest
     strategy:
       matrix:
         platform:
