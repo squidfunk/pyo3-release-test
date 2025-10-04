@@ -201,11 +201,16 @@ jobs:
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: 'wheels-*/*'
-      - name: Publish to PyPI
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        uses: PyO3/maturin-action@v1
+      - name: Upload artifacts to existing release via gh CLI
         env:
-          MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-        with:
-          command: upload
-          args: --non-interactive --skip-existing wheels-*/*
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.ref_name }} wheels-*/**/* --clobber
+      # - name: Publish to PyPI
+      #   if: ${{ startsWith(github.ref, 'refs/tags/') }}
+      #   uses: PyO3/maturin-action@v1
+      #   env:
+      #     MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+      #   with:
+      #     command: upload
+      #     args: --non-interactive --skip-existing wheels-*/*
