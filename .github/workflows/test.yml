@@ -1,0 +1,96 @@
+name: Test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    name: Test Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        include:
+          # Test free-threaded Python on Linux
+          - os: ubuntu-latest
+            python-version: "3.13t"
+          # Test different architectures on Linux
+          - os: ubuntu-latest
+            python-version: "3.11"
+            architecture: "aarch64"
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          
+      - name: Set up QEMU (for ARM64 testing)
+        if: matrix.architecture == 'aarch64'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+          
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        
+      - name: Build package
+        run: |
+          pip install maturin
+          maturin develop
+          
+      - name: Run doctests
+        run: |
+          python -m doctest python/guessing_game/*.py -v
+          
+      - name: Run Python tests
+        run: |
+          python -c "import guessing_game; print('Import successful')"
+          python python/guessing_game/main.py
+          
+      - name: Test package installation
+        run: |
+          pip install wheel
+          maturin build --release
+          pip install target/wheels/*.whl --force-reinstall
+          python -c "import guessing_game; print('Wheel installation successful')"
+
+  test-architectures:
+    name: Test on ${{ matrix.arch }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [aarch64, armv7, s390x, ppc64le]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Test on ${{ matrix.arch }}
+        uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ubuntu22.04
+          githubToken: ${{ github.token }}
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+          install: |
+            apt-get update -q -y
+            apt-get install -q -y python3 python3-pip curl build-essential
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            source ~/.cargo/env
+          run: |
+            source ~/.cargo/env
+            pip3 install maturin
+            cd ${GITHUB_WORKSPACE}
+            maturin develop
+            python3 -c "import guessing_game; print('${{ matrix.arch }} test successful')"
+            python3 python/guessing_game/main.py
