@@ -207,8 +207,8 @@ jobs:
           find wheels-*
       - uses: actions/checkout@v4
       - name: Upload artifacts to existing release via gh CLI
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh release upload ${{ github.ref_name }} 'wheels-*/*' --clobber
       # - name: Publish to PyPI
