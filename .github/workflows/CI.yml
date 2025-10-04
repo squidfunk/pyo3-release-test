@@ -54,8 +54,8 @@ jobs:
           path: dist
 
   musllinux:
-    name: Linux/musl
-    runs-on: ${{ matrix.platform.runner }}
+    name: Musl Linux
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         platform:
