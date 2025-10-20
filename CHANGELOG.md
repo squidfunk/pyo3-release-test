@@ -2,9 +2,10 @@
 
 ### Features
 
-- `9bf11e57ca443f9f21bc738cd8cbbf71c107ecc9` _My message_
-- `0746fffd821abb2fc5f6b71e12b5e974f6c0b6ab` _My message_
-- `5765a3dedf196bf9832c609c4e7eddbda324c919` _My message_
+- `9bf11e57ca443f9f21bc738cd8cbbf71c107ecc9` *(cloud)* _My message_
+- `0746fffd821abb2fc5f6b71e12b5e974f6c0b6ab` *(cloud)* _My message_
+- `5765a3dedf196bf9832c609c4e7eddbda324c919` *(cloud)* _My message_
+- `a57c00dc95de11ed6b6515d9ea051a04a18521d4` *(cloud)* _My message_
 
 ### Bar
 
