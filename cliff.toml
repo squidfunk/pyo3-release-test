@@ -37,7 +37,7 @@ postprocessors = [
 [git]
 # Parse commits according to the conventional commits specification.
 # See https://www.conventionalcommits.org
-conventional_commits = false
+conventional_commits = true
 # Exclude commits that do not match the conventional commits specification.
 filter_unconventional = true
 # Require all commits to be conventional.
@@ -60,8 +60,8 @@ protect_breaking_commits = false
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 commit_parsers = [
-    { message = "^\\((.*)\\):chore - ", group = "Chores" },
-    { message = "^\\((.*)\\):feat - ", group = "Features" },
+    { message = "^(.*):chore - ", group = "Chores" },
+    { message = "^(.*):feat - ", group = "Features" },
     # { message = "^feat", group = "<!-- 0 -->🚀 Features" },
     # { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
     # { message = "^doc", group = "<!-- 3 -->📚 Documentation" },
