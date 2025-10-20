@@ -60,7 +60,7 @@ protect_breaking_commits = false
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 commit_parsers = [
-    { message = "^feature\\((.*)\\) - $", scope = "$1", group = "<!-- 0 -->Features" },
+    { message = "^feature\\((.*)\\) - (.*)", scope = "$1", group = "<!-- 0 -->Features" },
     { message = "^fix", group = "<!-- 1 -->Bug Fixes" },
     { message = "^docs", group = "<!-- 3 -->Documentation" },
     { message = "^perf", group = "<!-- 4 -->Performance" },
