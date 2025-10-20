@@ -60,15 +60,13 @@ protect_breaking_commits = false
 # Assigns commits to groups.
 # Optionally sets the commit's scope and can decide to exclude commits from further processing.
 commit_parsers = [
-    { message = "^(.*):chore - ", group = "Chores" },
-    { message = "^(.*):feat - ", group = "Features" },
-    # { message = "^feat", group = "<!-- 0 -->🚀 Features" },
-    # { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
-    # { message = "^doc", group = "<!-- 3 -->📚 Documentation" },
-    # { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
-    # { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
-    # { message = "^style", group = "<!-- 5 -->🎨 Styling" },
-    # { message = "^test", group = "<!-- 6 -->🧪 Testing" },
+    { message = "^feature(.*)", scope = "$1", group = "<!-- 0 -->Features" },
+    { message = "^fix", group = "<!-- 1 -->Bug Fixes" },
+    { message = "^docs", group = "<!-- 3 -->Documentation" },
+    { message = "^perf", group = "<!-- 4 -->Performance" },
+    { message = "^refactor", group = "<!-- 2 -->Refactor" },
+    { message = "^style", group = "<!-- 5 -->Styling" },
+    { message = "^test", group = "<!-- 6 -->Testing" },
     # { message = "^chore\\(release\\): prepare for", skip = true },
     # { message = "^chore\\(deps.*\\)", skip = true },
     # { message = "^chore\\(pr\\)", skip = true },
